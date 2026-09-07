@@ -1,8 +1,8 @@
-# Conventional Commits 1.0.0 (Summary)
+# Conventional Commits 1.0.0（摘要）
 
-Source: https://www.conventionalcommits.org/en/v1.0.0/
+来源：https://www.conventionalcommits.org/en/v1.0.0/
 
-## Format
+## 格式
 
 ```
 <type>[optional scope][optional !]: <description>
@@ -12,72 +12,71 @@ Source: https://www.conventionalcommits.org/en/v1.0.0/
 [optional footer(s)]
 ```
 
-## Type
+## 类型
 
-MUST be a noun: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`, etc.
+必须是名词，例如：`feat`、`fix`、`docs`、`style`、`refactor`、`perf`、`test`、`build`、`ci`、`chore`、`revert` 等。
 
-- `feat` → MINOR in SemVer
-- `fix` → PATCH in SemVer
-- Breaking change → MAJOR in SemVer
+- `feat` → SemVer 的次版本
+- `fix` → SemVer 的修订版本
+- 破坏性变更 → SemVer 的主版本
 
-## Scope
+## 作用域（Scope）
 
-OPTIONAL noun in parentheses: `feat(parser):`, `fix(api):`
+可选的括号内名词，例如：`feat(parser):`、`fix(api):`。
 
-## Description
+## 描述（Description）
 
-- Immediate after `: `
-- Short summary of the change
-- Imperative, present tense
-- No capitalization of first letter required, but consistent style preferred
-- No trailing period
+- 紧跟在 `: ` 之后。
+- 简要概括变更内容。
+- 使用祈使语气和现在时态；中文应使用简洁的动宾短语。
+- 不要求首字母大写，但应保持风格一致。
+- 末尾不加句号。
 
-## Body
+## 正文（Body）
 
-- One blank line after description
-- Free-form, can contain multiple paragraphs
-- Explain the motivation for the change and contrast with previous behavior
+- 与 description 之间空一行。
+- 格式自由，可以包含多个段落。
+- 说明变更动机，以及与之前行为的差异。
 
-## Footer
+## 页脚（Footer）
 
-- One blank line after body
-- Token + `:` or `#` + value
-- Tokens use `-` for spaces (e.g. `Reviewed-by`)
-- Special case: `BREAKING CHANGE: <description>` (may also use `!` after type/scope)
+- 与正文之间空一行。
+- 使用 token 加 `:` 或 `#`，后接对应值。
+- token 中用 `-` 代替空格，例如 `Reviewed-by`。
+- 特殊情况：`BREAKING CHANGE: <变更说明>`（也可以在 type 或 scope 后使用 `!`）。
 
-## Examples
-
-```
-feat: allow provided config object to extend other configs
-
-BREAKING CHANGE: `extends` key in config file is now used for extending other config files
-```
+## 示例
 
 ```
-feat(lang): add polish language
+feat: 允许提供的配置对象扩展其他配置
+
+BREAKING CHANGE: 配置文件中的 `extends` 键现在用于扩展其他配置文件
 ```
 
 ```
-fix: prevent racing of requests
+feat(lang): 增加波兰语支持
+```
 
-Introduce a request id and a reference to latest request. Dismiss
-incoming responses other than from latest request.
+```
+fix: 防止请求竞争
 
-Remove timeouts which were used to mitigate the racing issue but are
-obsolete now.
+引入请求 ID 和最新请求的引用。忽略除最新请求之外的
+其他响应。
+
+移除原本用于缓解竞争问题、但现在已经过时的超时机制。
 
 Reviewed-by: Z
 Refs: #123
 ```
 
 ```
-docs: correct spelling of CHANGELOG
+docs: 修正 CHANGELOG 的拼写
 ```
 
 ```
-feat!: send an email to the customer when a product is shipped
+feat!: 产品发货后向客户发送邮件
 ```
 
 ```
-feat(api)!: send an email to the customer when a product is shipped
+feat(api)!: 产品发货后向客户发送邮件
 ```

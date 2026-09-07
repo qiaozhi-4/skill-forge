@@ -1,89 +1,95 @@
 ---
 name: git-commit-messages
-description: Generate, rewrite, or validate git commit messages under strict constraints such as Conventional Commits format, length limits, required types, scopes, and language rules. Use when the user asks to write a commit message, generate a commit msg, improve a commit message, enforce conventional commits, or apply any commit message style guide or constraints.
+description: 生成、改写或校验 Git 提交信息，遵循 Conventional Commits、长度限制、必需类型、scope 和语言等约束。用户请求编写提交信息、生成 commit message、改进提交信息、强制执行 Conventional Commits 或应用提交信息规范时使用。
 ---
 
-# Git Commit Messages
+# Git 提交信息
 
-## Overview
+## 概述
 
-Produce high-quality, constrained git commit messages that follow a consistent structure. Default to Conventional Commits 1.0.0 unless the user specifies different rules.
+生成高质量且符合约束的 Git 提交信息，确保结构一致。除非用户指定其他规则，否则默认遵循 Conventional Commits 1.0.0。
 
-## Core Rules (always apply)
+## 核心规则（始终适用）
 
-When generating or rewriting a commit message:
+生成或改写提交信息时：
 
-1. **Structure** (Conventional Commits default):
+1. **结构**（默认使用 Conventional Commits）：
    ```
-   <type>[optional scope][optional !]: <description>
+   <type>[可选 scope][可选 !]: <description>
 
-   [optional body]
+   [可选正文]
 
-   [optional footer(s)]
+   [可选 footer]
    ```
 
-2. **Type** (required): Use one of the standard types below. Prefer the most specific match.
-   - `feat` — new feature
-   - `fix` — bug fix
-   - `docs` — documentation only
-   - `style` — formatting, whitespace, no code change
-   - `refactor` — code change that neither fixes a bug nor adds a feature
-   - `perf` — performance improvement
-   - `test` — adding or correcting tests
-   - `build` — build system or external dependencies
-   - `ci` — CI configuration
-   - `chore` — other changes that don't modify src or test files
-   - `revert` — reverts a previous commit
+2. **类型**（必需）：使用以下标准类型，并优先选择最具体的类型。
+   - `feat` — 新增功能
+   - `fix` — 修复问题
+   - `docs` — 仅修改文档
+   - `style` — 格式、空格等不影响代码含义的修改
+   - `refactor` — 既不修复问题也不新增功能的代码修改
+   - `perf` — 性能优化
+   - `test` — 新增或修正测试
+   - `build` — 构建系统或外部依赖变更
+   - `ci` — CI 配置变更
+   - `chore` — 不修改源代码或测试文件的其他变更
+   - `revert` — 回退之前的提交
 
-3. **Scope** (optional): A noun in parentheses describing the section of the codebase, e.g. `feat(api):`, `fix(parser):`.
+3. **Scope**（可选）：使用名词描述代码库中的相关部分，例如 `feat(api):`、`fix(parser):`。
 
-4. **Breaking change**:
-   - Append `!` after type/scope → `feat(api)!:` or
-   - Add a footer `BREAKING CHANGE: <description>`
+4. **破坏性变更**：
+   - 在 type 或 scope 后添加 `!`，例如 `feat(api)!:`；或
+   - 添加 `BREAKING CHANGE: <变更说明>` footer。
 
-5. **Description**:
-   - Imperative mood ("add", not "added" or "adds")
-   - No period at the end
-   - Maximum 72 characters (hard limit 100)
-   - Lowercase after the colon (unless proper noun or acronym)
-   - Focus on *why* and *what*, not *how*
+5. **Description**：
+   - 默认使用中文；type 和可选 scope 保留标准英文标识。
+   - 使用祈使、简洁的动宾短语，例如 `修复登录超时问题`。
+   - 末尾不加句号。
+   - 最多 72 个字符（硬上限为 100 个字符）。
+   - 使用英文 description 时，冒号后使用小写，专有名词或缩写除外。
+   - 聚焦于“为什么”和“做了什么”，而不是“如何实现”。
 
-6. **Body** (optional but preferred for non-trivial changes):
-   - Separated by a blank line
-   - Explain motivation, contrast with previous behavior
-   - Wrap at 72 characters
+6. **语言**：
+   - 正文和 footer 中的说明默认也使用中文。
+   - 如果用户明确指定其他语言，或仓库已有明确约定，则遵循该要求。
 
-7. **Footers** (optional):
-   - `BREAKING CHANGE: ...`
-   - `Refs: #123`, `Closes: #456`, `Reviewed-by: ...`
-   - Use `-` instead of spaces in tokens
+7. **正文**（非简单变更可选但建议添加）：
+   - 与标题之间空一行。
+   - 说明变更动机，以及与之前行为的差异。
+   - 按每行 72 个字符换行。
 
-## Generation Workflow
+8. **Footer**（可选）：
+   - `BREAKING CHANGE: <变更说明>`
+   - `Refs: #123`、`Closes: #456`、`Reviewed-by: ...`
+   - token 中不要使用空格，改用 `-`。
 
-1. Analyze the provided diff, staged changes, or description of changes.
-2. Determine the primary type and optional scope.
-3. Write a concise description following the rules above.
-4. Add body only when the change needs explanation.
-5. Add footers when relevant (issues, breaking changes, co-authors).
-6. Output **only** the final commit message unless the user asks for alternatives or explanation.
+## 生成流程
 
-## Custom Constraints
+1. 分析用户提供的 diff、暂存区变更或变更描述。
+2. 确定主要类型和可选 scope。
+3. 按规则写出简洁的 description。
+4. 只有在变更需要解释时才添加正文。
+5. 在相关时添加 issue、破坏性变更或共同作者等 footer。
+6. 除非用户要求提供备选方案或解释，否则只输出最终提交信息。
 
-If the user provides additional constraints (e.g. "must be in Chinese", "max 50 chars", "always include scope", "use emoji", company style guide), treat them as higher priority than the defaults and apply them strictly.
+## 自定义约束
 
-## Validation Mode
+如果用户提供额外约束（例如“必须使用中文”“最多 50 个字符”“始终包含 scope”“使用 emoji”或公司规范），将其视为高于默认规则的要求并严格遵循。
 
-When asked to check or improve an existing commit message:
-- Point out violations of the rules
-- Provide a corrected version
-- Keep the original intent
+## 校验模式
 
-## Output Format
+当用户要求检查或改进现有提交信息时：
 
-- By default return a single ready-to-use commit message.
-- When multiple options make sense, offer 2–3 ranked alternatives with brief rationale.
-- Never wrap the commit message in markdown code fences unless the user explicitly requests it.
+- 指出违反的规则。
+- 提供修正后的版本。
+- 保留原始意图。
 
-## References
+## 输出格式
 
-- Full Conventional Commits rules: see `references/conventional-commits.md`
+- 默认返回一条可以直接使用的提交信息。
+- 如果存在多种合理方案，提供 2–3 个按优先级排序的选项，并简要说明理由。
+- 除非用户明确要求，否则不要使用 Markdown 代码围栏包裹提交信息。
+
+## 参考资料
+
+- 完整的 Conventional Commits 规则见 `references/conventional-commits.md`。
