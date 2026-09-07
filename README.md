@@ -4,27 +4,17 @@
 
 ## 技能列表
 
-### `code-comment-guidelines`
+| 技能 | 说明 | 技能入口 | 安装命令 |
+|---|---|---|---|
+| [`code-comment-guidelines`](skills/code-comment-guidelines/SKILL.md) | 面向代码注释的编写、补充与审查，当前覆盖 C / C++、Kotlin 和 Java。 | [`SKILL.md`](skills/code-comment-guidelines/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill code-comment-guidelines --agent codex` |
+| [`git-commit-messages`](skills/git-commit-messages/SKILL.md) | 生成、改写或校验符合约束的 Git 提交信息，默认遵循 Conventional Commits 规范。 | [`SKILL.md`](skills/git-commit-messages/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill git-commit-messages --agent codex` |
+| [`plan-documentation`](skills/plan-documentation/SKILL.md) | 规范多步骤项目计划的创建与维护，使用“主路线图 + 事项详情文档”的结构组织计划。 | [`SKILL.md`](skills/plan-documentation/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill plan-documentation --agent codex` |
 
-面向代码注释的编写、补充与审查，当前覆盖：
+## 外部技能
 
-- C / C++
-- Kotlin
-- Java
-
-技能入口：[skills/code-comment-guidelines/SKILL.md](skills/code-comment-guidelines/SKILL.md)
-
-### `git-commit-messages`
-
-生成、改写或校验符合约束的 Git 提交信息，默认遵循 Conventional Commits 规范。
-
-技能入口：[skills/git-commit-messages/SKILL.md](skills/git-commit-messages/SKILL.md)
-
-### `plan-documentation`
-
-规范多步骤项目计划的创建与维护，使用“主路线图 + 事项详情文档”的结构组织计划。
-
-技能入口：[skills/plan-documentation/SKILL.md](skills/plan-documentation/SKILL.md)
+| 技能 | 说明 | 来源 | 安装命令 |
+|---|---|---|---|
+| [`karpathy-guidelines`](https://github.com/multica-ai/andrej-karpathy-skills/tree/main/skills/karpathy-guidelines) | 减少 LLM 常见编码错误的行为准则，来源于 Andrej Karpathy 的观察。 | [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills) | `npx skills add https://github.com/multica-ai/andrej-karpathy-skills.git --skill karpathy-guidelines --agent codex` |
 
 ## 安装
 
