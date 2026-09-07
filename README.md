@@ -2,6 +2,12 @@
 
 这是一个 SK（Skill）集合仓库，用于集中维护可复用的 Codex 技能。每个技能以独立目录组织，入口文件为 `SKILL.md`，需要时可附带 `references/`、`scripts/` 或 `assets/` 等资源。
 
+## Codex 全局约束
+
+[`AGENTS.md`](AGENTS.md) 不是某个 SK 的项目文档，而是一套可复用的 Codex 全局约束，用于统一 Codex 的沟通、执行、测试与 Git 操作方式。使用 Codex 时，可将其作为跨项目通用行为规范的参考。
+
+使用时，可以将 `AGENTS.md` 复制到本机 Codex 全局设置目录 `~/.codex/` 下的 `~/.codex/AGENTS.md`，作为所有项目通用的约束；也可以复制到具体项目的 `.agents/` 目录下的 `<project>/.agents/AGENTS.md`，作为该项目可复用的约束。
+
 ## 技能列表
 
 | 技能 | 说明 | 技能入口 | 安装命令 |
