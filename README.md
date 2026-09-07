@@ -14,14 +14,26 @@
 
 技能入口：[skills/code-comment-guidelines/SKILL.md](skills/code-comment-guidelines/SKILL.md)
 
+### `git-commit-messages`
+
+生成、改写或校验符合约束的 Git 提交信息，默认遵循 Conventional Commits 规范。
+
+技能入口：[skills/git-commit-messages/SKILL.md](skills/git-commit-messages/SKILL.md)
+
+### `plan-documentation`
+
+规范多步骤项目计划的创建与维护，使用“主路线图 + 事项详情文档”的结构组织计划。
+
+技能入口：[skills/plan-documentation/SKILL.md](skills/plan-documentation/SKILL.md)
+
 ## 安装
 
-将仓库上传到 GitHub 后，可以使用 `skills` CLI 安装技能。将 `<owner>/<repo>` 替换为实际的 GitHub 仓库地址。
+可以使用 `skills` CLI 安装本仓库中的技能。
 
 安装指定技能：
 
 ```bash
-npx skills add <owner>/<repo> \
+npx skills add https://github.com/qiaozhi-4/skill-forge.git \
   --skill code-comment-guidelines \
   --agent codex
 ```
@@ -29,7 +41,7 @@ npx skills add <owner>/<repo> \
 安装仓库中的全部技能：
 
 ```bash
-npx skills add <owner>/<repo> --all
+npx skills add https://github.com/qiaozhi-4/skill-forge.git --all
 ```
 
 也可以使用 `--skill '*'` 匹配全部技能。
