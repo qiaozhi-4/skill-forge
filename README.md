@@ -42,6 +42,14 @@ npx skills add https://github.com/qiaozhi-4/skill-forge.git --all
 
 也可以使用 `--skill '*'` 匹配全部技能。
 
+## 卸载
+
+卸载已安装到 Codex 的指定技能：
+
+```bash
+npx skills remove code-comment-guidelines --agent codex
+```
+
 ## 目录约定
 
 ```text
