@@ -1,13 +1,19 @@
 ---
-name: git-commit-messages
-description: 生成、改写或校验 Git 提交信息，遵循 Conventional Commits、长度限制、必需类型、scope 和语言等约束。用户请求编写提交信息、生成 commit message、改进提交信息、强制执行 Conventional Commits 或应用提交信息规范时使用。
+name: git
+description: 处理 Git 仓库检查、diff 阅读、提交信息生成与校验，以及用户明确授权的 Git 操作；涉及 Git 工作流、提交信息或需要保护已有暂存内容时使用。
 ---
 
-# Git 提交信息
+# Git
 
 ## 概述
 
-生成高质量且符合约束的 Git 提交信息，确保结构一致。除非用户指定其他规则，否则默认遵循 Conventional Commits 1.0.0。
+处理 Git 仓库相关工作，优先保护用户已有的暂存内容。除非用户指定其他规则，否则提交信息默认遵循 Conventional Commits 1.0.0。
+
+## 工作区与 Git 状态
+
+开始任务前先检查暂存区。若暂存区已有内容，本次修改必须只保留在工作区，不得执行 `git add` 或其他会将本次修改写入暂存区的操作；暂存区内容由用户保留用于对比。
+
+Git 默认仅限只读操作，例如 `git status`、`git diff`、`git log`。除非用户明确授权，不得执行会修改工作区或 Git 状态的操作，例如 `add`、`commit`、`reset`、`restore`、`checkout`、`clean`、`stash`、`merge` 和 `rebase`。
 
 ## 核心规则（始终适用）
 

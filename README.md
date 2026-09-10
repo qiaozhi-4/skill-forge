@@ -4,7 +4,7 @@
 
 ## Codex 全局约束
 
-[`AGENTS.md`](AGENTS.md) 不是某个 SK 的项目文档，而是一套可复用的 Codex 全局约束，用于统一 Codex 的沟通、执行、测试与 Git 操作方式。使用 Codex 时，可将其作为跨项目通用行为规范的参考。
+[`AGENTS.md`](AGENTS.md) 不是某个 SK 的项目文档，而是一套可复用的 Codex 全局约束，用于统一 Codex 的沟通、执行与测试方式。Git 相关约束由 `git` skill 统一维护。使用 Codex 时，可将 `AGENTS.md` 作为跨项目通用行为规范的参考。
 
 使用时，可以将 `AGENTS.md` 复制到本机 Codex 全局设置目录 `~/.codex/` 下的 `~/.codex/AGENTS.md`，作为所有项目通用的约束；也可以复制到具体项目的 `.agents/` 目录下的 `<project>/.agents/AGENTS.md`，作为该项目可复用的约束。
 
@@ -13,7 +13,7 @@
 | 技能 | 说明 | 技能入口 | 安装命令 |
 |---|---|---|---|
 | [`code-comment-guidelines`](skills/code-comment-guidelines/SKILL.md) | 面向代码注释的编写、补充与审查，当前覆盖 C / C++、Kotlin 和 Java。 | [`SKILL.md`](skills/code-comment-guidelines/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill code-comment-guidelines --agent codex` |
-| [`git-commit-messages`](skills/git-commit-messages/SKILL.md) | 生成、改写或校验符合约束的 Git 提交信息，默认遵循 Conventional Commits 规范。 | [`SKILL.md`](skills/git-commit-messages/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill git-commit-messages --agent codex` |
+| [`git`](skills/git/SKILL.md) | 处理 Git 仓库检查、diff 阅读、提交信息和受授权的 Git 操作，默认遵循 Conventional Commits 规范。 | [`SKILL.md`](skills/git/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill git --agent codex` |
 | [`plan-documentation`](skills/plan-documentation/SKILL.md) | 规范多步骤项目计划的创建与维护，使用“主路线图 + 事项详情文档”的结构组织计划。 | [`SKILL.md`](skills/plan-documentation/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill plan-documentation --agent codex` |
 
 ## 外部技能

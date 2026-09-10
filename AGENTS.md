@@ -36,8 +36,3 @@
 
 - 全局规则维护在当前生效的 canonical `AGENTS.md`；`CLAUDE.md` 只作兼容入口，不复制规则正文。
 - 项目事实、生产状态、历史决策和对外契约以项目级 `AGENTS.md` 及其指定的脚本、探针、决策记录和合同文件为准。
-
-## Git
-
-- 执行任务前先检查暂存区。若暂存区已有内容，本次修改必须只保留在工作区，不得执行 `git add` 或其他会将本次修改写入暂存区的操作；暂存区内容由用户保留用于对比。
-- Git 仅限只读操作，例如 `git status`、`git diff`、`git log`。除非用户明确授权，不得执行会修改工作区或 Git 状态的操作，例如 `add`、`commit`、`reset`、`restore`、`checkout`、`clean`、`stash`、`merge` 和 `rebase`。
