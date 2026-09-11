@@ -16,6 +16,10 @@
 | [`git`](skills/git/SKILL.md) | 处理 Git 仓库检查、diff 阅读、提交信息和受授权的 Git 操作，默认遵循 Conventional Commits 规范。 | [`SKILL.md`](skills/git/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill git --agent codex` |
 | [`plan-documentation`](skills/plan-documentation/SKILL.md) | 规范多步骤项目计划的创建与维护，使用“主路线图 + 事项详情文档”的结构组织计划。 | [`SKILL.md`](skills/plan-documentation/SKILL.md) | `npx skills add https://github.com/qiaozhi-4/skill-forge.git --skill plan-documentation --agent codex` |
 
+## 使用文档
+
+- [`Spec Kit + Codex 使用文档`](docs/spec-kit-使用文档.md)：包含 Specify CLI 安装、Codex 初始化、`$speckit-*` 工作流、收敛循环和常见问题。
+
 ## 外部技能
 
 | 技能 | 说明 | 来源 | 安装命令 |
