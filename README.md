@@ -19,12 +19,14 @@
 ## 使用文档
 
 - [`Spec Kit + Codex 使用文档`](docs/spec-kit-使用文档.md)：包含 Specify CLI 安装、Codex 初始化、`$speckit-*` 工作流、收敛循环和常见问题。
+- [`UI UX Pro Max 使用文档`](docs/ui-ux-pro-max-使用文档.md)：安装并在 Codex 中使用 UI UX Pro Max skill 的最小流程。
 
 ## 外部技能
 
 | 技能 | 说明 | 来源 | 安装命令 |
 |---|---|---|---|
 | [`karpathy-guidelines`](https://github.com/multica-ai/andrej-karpathy-skills/tree/main/skills/karpathy-guidelines) | 减少 LLM 常见编码错误的行为准则，来源于 Andrej Karpathy 的观察。 | [`multica-ai/andrej-karpathy-skills`](https://github.com/multica-ai/andrej-karpathy-skills) | `npx skills add https://github.com/multica-ai/andrej-karpathy-skills.git --skill karpathy-guidelines --agent codex` |
+| [`frontend-design`](https://github.com/anthropics/skills/blob/main/skills/frontend-design/SKILL.md) | 构建或重塑 UI 时，提供有辨识度、经过刻意设计的视觉方向、字体和布局指导。 | [`anthropics/skills`](https://github.com/anthropics/skills) | `npx skills add https://github.com/anthropics/skills.git --skill frontend-design --agent codex` |
 
 ## 安装
 
