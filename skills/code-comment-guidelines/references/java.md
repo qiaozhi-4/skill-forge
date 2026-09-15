@@ -51,18 +51,49 @@ Java 注释不仅按单行或多行选择语法，还要结合声明可见性、
 - 检查 `{@link}` 是否指向当前可解析的类型、import 是否对应实际链接，以及 Javadoc 是否能被项目工具生成。
 - 完成格式检查以及项目已有的 Javadoc、静态分析或编译检查。
 
-示例：
+## 示例
+
+下面的示例同时展示类、字段、构造器和公共方法的注释位置。`@author` 仅用于展示格式，实际代码应替换为真实作者或团队名称。
 
 ```java
-import com.example.platform.PlatformEnum;
+import java.time.Instant;
 
 /**
- * 保存平台相关配置。
+ * 保存订单支付状态及最近一次状态变更时间。
  *
- * @author 作者
+ * @author 示例作者
  */
-public class Example {
-    /// 平台（t_platform，1=Facebook，2=Messenger，3=Instagram），取值定义见 {@link PlatformEnum}。
-    private Integer platform;
+public final class PaymentRecord {
+    /// 订单号在系统内全局唯一，创建后不可变。
+    private final String orderId;
+
+    /// 最近一次状态变更时间统一使用 UTC，避免跨时区比较产生歧义。
+    private Instant statusChangedAt;
+
+    /**
+     * 创建待支付记录。
+     *
+     * @param orderId 非空订单号
+     * @throws IllegalArgumentException 当订单号为空或只包含空白字符时抛出
+     */
+    public PaymentRecord(String orderId) {
+        if (orderId == null || orderId.isBlank()) {
+            throw new IllegalArgumentException("orderId must not be blank");
+        }
+        this.orderId = orderId;
+        this.statusChangedAt = Instant.now();
+    }
+
+    /**
+     * 记录业务系统确认的状态变更时间。
+     *
+     * @param changedAt 不接受 null，调用方应传入业务事件发生时间而不是当前机器时间
+     */
+    public void markChangedAt(Instant changedAt) {
+        if (changedAt == null) {
+            throw new IllegalArgumentException("changedAt must not be null");
+        }
+        this.statusChangedAt = changedAt;
+    }
 }
 ```

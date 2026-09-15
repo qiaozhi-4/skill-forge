@@ -38,3 +38,39 @@ Kotlin 注释不仅按单行或多行选择语法，还要结合声明可见性�
 - 修改可空性、协程上下文、状态集合、默认参数、异常行为或 Java 互操作契约时，同步更新相关注释。
 - 检查 KDoc 链接和标签是否仍能解析，避免复制容易过期的实现细节。
 - 完成格式检查以及项目已有的 Dokka、编译器或静态分析检查。
+
+## 示例
+
+下面的示例展示类、属性和公共函数如何分别记录业务约束；显然的属性名不需要重复写成注释。
+
+```kotlin
+/**
+ * 记录批量导入任务的进度，并限制进度只能单调增加。
+ */
+class ImportJob(jobId: String) {
+    /**
+     * 导入任务的唯一标识，创建后不可变。
+     */
+    val id: String = jobId.also {
+        require(it.isNotBlank()) { "jobId must not be blank" }
+    }
+
+    /**
+     * 当前进度百分比，范围为 0..100，仅通过 [updateProgress] 修改。
+     */
+    var progress: Int = 0
+        private set
+
+    /**
+     * 更新导入进度。
+     *
+     * @param value 新的进度百分比，不能小于当前进度
+     * @throws IllegalArgumentException 当进度超出 0..100 或回退时抛出
+     */
+    fun updateProgress(value: Int) {
+        require(value in 0..100) { "progress must be between 0 and 100" }
+        require(value >= progress) { "progress cannot move backwards" }
+        progress = value
+    }
+}
+```

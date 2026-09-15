@@ -38,3 +38,42 @@ C/C++ 注释不仅按单行或多行选择语法，还要结合声明位置、�
 - 修改声明、所有权、错误处理、并发策略或平台条件时，同步更新相关注释。
 - 检查注释是否仍然符合头文件/实现文件的可见范围，避免在公共文档中泄露仅适用于某个实现的细节。
 - 完成格式检查以及项目已有的 Doxygen、静态分析或文档生成检查。
+
+## 示例
+
+下面的 C++ 示例展示公共类、字段和方法的注释重点；字段注释记录单位和状态约束，方法注释记录调用方必须满足的边界。
+
+```cpp
+#include <cstddef>
+#include <string>
+#include <utility>
+
+/**
+ * 保存文件上传任务的进度。
+ *
+ * task_id_ 只标识任务，不代表文件内容；上传字节数由调用方按成功写入的结果更新。
+ */
+class UploadTask {
+public:
+    explicit UploadTask(std::string task_id)
+        : task_id_(std::move(task_id)) {}
+
+    /**
+     * 更新已成功上传的字节数。
+     *
+     * @param uploaded_bytes 新值不能小于当前值，避免重试导致进度回退。
+     */
+    void setUploadedBytes(std::size_t uploaded_bytes) {
+        if (uploaded_bytes >= uploaded_bytes_) {
+            uploaded_bytes_ = uploaded_bytes;
+        }
+    }
+
+private:
+    /// 任务 ID 在任务生命周期内保持不变，当前对象不拥有外部任务记录。
+    std::string task_id_;
+
+    /// 已成功写入的字节数，不是待上传或已读取的字节数。
+    std::size_t uploaded_bytes_{0};
+};
+```
