@@ -17,7 +17,6 @@ Java 注释不仅按单行或多行选择语法，还要结合声明可见性、
 - 单行说明、TODO、分支说明和语句行尾注释统一使用 `///`，不要使用 `//`；行尾注释仅在说明不可见的业务原因或边界时使用。
 - 字段注释放在字段声明上方相邻位置，并使用单行 `///`。
 - 公共 API 或生成文档使用 `/** ... */`（Javadoc）；一行无法容纳且不需要生成文档时才使用 `/* ... */` 短块注释。
-- `@param`、`@return`、`@throws` 等 Javadoc 标签只在补充签名无法表达的约束或语义时使用，并保持与实现一致。
 
 ## 类级 Javadoc
 
@@ -82,6 +81,7 @@ public final class PaymentRecord {
      * 记录业务系统确认的状态变更时间。
      *
      * @param changedAt 不接受 null，调用方应传入业务事件发生时间而不是当前机器时间
+     * @throws IllegalArgumentException 当 changedAt 为 null 时抛出
      */
     public void markChangedAt(Instant changedAt) {
         if (changedAt == null) {
