@@ -36,3 +36,10 @@
 
 - 全局规则维护在当前生效的 canonical `AGENTS.md`；`CLAUDE.md` 只作兼容入口，不复制规则正文。
 - 项目事实、生产状态、历史决策和对外契约以项目级 `AGENTS.md` 及其指定的脚本、探针、决策记录和合同文件为准。
+
+## Spec Kit 文件读取边界
+
+- 仓库根目录下的 `specs/` 是按 feature 划分的 Spec Kit 工作资料，不属于一般任务的默认上下文。
+- 只有在本轮明确执行 Spec Kit 相关 skill 或命令（例如 `$speckit-specify`、`$speckit-plan`、`$speckit-implement`、`$speckit-converge`），或用户明确要求检查某个 spec 文件时，才读取 `specs/`。
+- 其他任务中，不要扫描、列出、搜索或读取 `specs/` 内的文件，也不要把其中内容用于推断当前需求、项目现状或实现方案。使用 `rg`、文件列表或其他工具探索仓库时，也排除 `specs/`。
+- 执行 Spec Kit 流程时，只读取当前 feature 所需的文件；不要因为历史 feature 目录存在就通读它们。除非用户明确要求，否则不要引用或修改其他 feature 的 spec。
