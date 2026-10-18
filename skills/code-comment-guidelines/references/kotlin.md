@@ -7,6 +7,7 @@ Kotlin 注释不仅按单行或多行选择语法，还要结合声明可见性�
 - **公共类、接口、对象、枚举和密封类型**：优先使用 KDoc，说明不变量、状态集合、扩展方式、序列化/反序列化约束和生命周期。
 - **函数、构造器和扩展函数**：每个声明都使用 KDoc，不因可见性或签名显而易见而省略；说明接收者语义、参数约束、默认值的业务含义、返回值状态、异常、线程安全、挂起/恢复边界和资源生命周期。
 - **属性、字段和常量**：类成员属性、顶层属性、常量和每个枚举项都在声明上方使用 `///`，说明业务含义、单位、取值范围、默认值、可变性、延迟初始化、缓存策略或所有权。
+- **自定义 getter 属性**：计算属性仍然是属性，`///` 应放在 `val`/`var` 声明上方，说明读取结果的含义；不要把属性注释放到 `get()` 上方。
 - **分支、集合转换和 DSL 逻辑**：只说明业务规则、性能取舍、求值顺序或易错边界，不要逐行解释表达式。
 - **TODO 和 FIXME**：说明未完成的原因、风险和完成判据，避免留下没有行动方向的待办。
 
@@ -70,6 +71,16 @@ class ImportJob(jobId: String) {
         require(value >= progress) { "progress cannot move backwards" }
         progress = value
     }
+}
+```
+
+计算属性的注释放在 `val`/`var` 声明上方，覆盖属性及其自定义 getter：
+
+```kotlin
+class DecodedConfigView(private val decoded: DecodedConfig) {
+    /// 解码后的延迟时长，单位为毫秒。
+    val delay: Long
+        get() = decoded.config.delayMillis.toLong()
 }
 ```
 
