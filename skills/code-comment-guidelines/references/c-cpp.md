@@ -39,6 +39,25 @@ C/C++ 注释不仅按单行或多行选择语法，还要结合声明位置、�
 double discountedPrice(double amount, double rate);
 ```
 
+文档注释只列出适用的标签：没有参数时不写 `@param`，返回类型为 `void` 时不写 `@return`。
+
+```cpp
+/**
+ * 设置当前运行模式。
+ * @param mode 要切换到的模式。
+ */
+void setMode(int mode);
+
+/**
+ * 返回当前运行模式。
+ * @return 当前模式的编号。
+ */
+int currentMode();
+
+/** 清空临时缓存。 */
+void clearCache();
+```
+
 ```cpp
 /// 先计算差额再扣除，减少浮点舍入误差。
 double discountedPrice(double amount, double rate) {
