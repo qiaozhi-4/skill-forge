@@ -95,6 +95,7 @@ inline constexpr int kDefaultRetries = 3;
 /// 单次请求允许的最大重试次数。
 #define MAX_REQUEST_RETRIES 5
 
+/// 配置相关状态与操作的命名空间。
 namespace config {
 /// 当前加载的配置版本号，由配置管理器更新。
 extern int version;
