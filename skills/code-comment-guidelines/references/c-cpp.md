@@ -20,6 +20,68 @@ C/C++ 注释不仅按单行或多行选择语法，还要结合声明位置、�
 - 不要用块注释堆叠多条单行说明；文档注释中的参数、返回值、错误条件和线程安全说明必须与函数签名和实现一致。
 - 如果任务触及已有的 `//` 行注释，在任务范围允许且转换安全时，将其改为 `///`。
 
+## 函数声明与定义
+
+- 函数在头文件声明、在 `.cpp` 文件定义时，在头文件声明处使用 `/** ... */` 文档注释，列出所有参数的 `@param` 及非 `void` 返回值的 `@return`；错误条件、所有权等契约也写在这里。实现处如需说明实现特点，在函数定义上方使用 `///`，不要重复头文件中的接口文档。
+- 函数体内只在逻辑复杂或较长、需要解释原因或边界时，才在对应逻辑上方使用 `///`；简单逻辑不添加函数体内注释。
+- 函数没有头文件声明、只在 `.cpp` 文件中定义时，在函数定义处使用与头文件 API 相同的 `/** ... */` 文档注释，并列出适用的 `@param`、`@return` 和其他契约标签。
+- 枚举类型、每个枚举项、常量对象和常量宏（如 `const`、`constexpr`、`#define`），以及类或命名空间作用域的字段，都在声明附近使用 `///` 注释说明其含义或约束；不要改用 `/** ... */`。
+
+头文件声明与对应实现：
+
+```cpp
+/**
+ * 计算折扣后的金额。
+ * @param amount 原始金额，必须大于等于零。
+ * @param rate 折扣比例，范围为 0 到 1。
+ * @return 折扣后的金额。
+ */
+double discountedPrice(double amount, double rate);
+```
+
+```cpp
+/// 先计算差额再扣除，减少浮点舍入误差。
+double discountedPrice(double amount, double rate) {
+    return amount - amount * rate;
+}
+```
+
+仅在 `.cpp` 中定义的函数，以及枚举和常量：
+
+```cpp
+#include <string>
+
+/**
+ * 返回配置键名的副本。
+ * @param key 原始键名。
+ * @return 传入键名的副本。
+ */
+std::string copyConfigKey(std::string key) {
+    return key;
+}
+
+/// 配置读取失败时使用的状态码。
+enum class ConfigStatus {
+    /// 操作成功。
+    Ok,
+    /// 配置项不存在。
+    Missing,
+    /// 配置内容无效。
+    Invalid
+};
+
+/// 默认重试次数，必须与连接超时策略保持一致。
+inline constexpr int kDefaultRetries = 3;
+
+/// 单次请求允许的最大重试次数。
+#define MAX_REQUEST_RETRIES 5
+
+namespace config {
+/// 当前加载的配置版本号，由配置管理器更新。
+extern int version;
+}
+```
+
 ## C/C++ 特有约束
 
 - 涉及裸指针、引用、智能指针、句柄或缓冲区时，明确所有权、借用时长、空值语义、线程安全和释放责任。
