@@ -12,7 +12,7 @@ description: 规范多步骤项目计划的创建与维护：先生成带状态�
 默认将计划文件放在项目已有的计划目录中。若项目没有约定，优先使用：
 
 ```text
-.agents/
+.agents/plans/
 ├── <TOPIC>-ROADMAP.md
 └── <topic>/
     ├── 01-<item-slug>.md
