@@ -7,7 +7,7 @@
 
 - 状态：⬜ 待开始
 - 优先级：P1
-- 所属路线图： [<TOPIC>-ROADMAP.md](../<TOPIC>-ROADMAP.md)
+- 所属路线图：[ROADMAP.md](./ROADMAP.md)
 - 前置依赖：无
 
 ## 1. 问题与背景
