@@ -20,6 +20,7 @@
 
 - [`Spec Kit + Codex 使用文档`](docs/spec-kit-使用文档.md)：包含 Specify CLI 安装、Codex 初始化、`$speckit-*` 工作流、收敛循环和常见问题。
 - [`UI UX Pro Max 使用文档`](docs/ui-ux-pro-max-使用文档.md)：安装并在 Codex 中使用 UI UX Pro Max skill 的最小流程。
+- [`AI 工程提示词集`](docs/AI-工程提示词集.md)：整理 7 组适用于各类 AI 助手的应用开发、重构、调试、系统设计、性能优化、协作和 UI 组件提示词。
 
 ## 外部技能
 
